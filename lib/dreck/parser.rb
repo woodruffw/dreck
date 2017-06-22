@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "parser"
-
 module Dreck
   # Type and other constraint testing methods for {Dreck}.
   class Parser
@@ -58,12 +56,12 @@ module Dreck
       # @return [String] the coerced string
       # @note This does nothing.
       def parse_string(str)
-        str
+        str.to_s
       end
 
       # @param type [Symbol] the type of each member of the list
       # @param list [Array<String>] the value of each member
-      # @return [Object] the coerced results
+      # @return [Array<Object>] the coerced results
       def parse_list(type, list)
         list.map { |arg| send "parse_#{type}", arg }
       end
