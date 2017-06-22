@@ -61,3 +61,8 @@ result[:id] # => "01aa84ab-5b2c-4861-adc9-fcc6990a5ca5"
 result[:inputs] # => ["/tmp/foo", "/tmp/bar"]
 result[:nums] # => [1, 2, 3, 4, 5]
 ```
+
+### TODO
+
+* Guarding against multiple unbound lists/unbound list before scalar types
+* Custom types?
