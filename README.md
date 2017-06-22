@@ -1,6 +1,8 @@
 dreck
 =====
 
+[![Gem Version](https://badge.fury.io/rb/dreck.svg)](https://badge.fury.io/rb/dreck)
+
 A stupid parser for trailing arguments.
 
 ### Motivation
