@@ -71,8 +71,7 @@ module Dreck
       count = count_expected
 
       return if count.nil?
-      raise AbsorptionError, "too few arguments" if count > @args.size && strict?
-      raise AbsorptionError, "too many arguments" if count < @args.size && strict?
+      raise AbsorptionError.new(count, @args.size) if count != @args.size && strict?
     end
 
     # Count the number of arguments expected to be supplied.
