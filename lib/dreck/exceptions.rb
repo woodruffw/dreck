@@ -9,7 +9,7 @@ module Dreck
   # or are insufficient to populate the expected results.
   class AbsorptionError < DreckError
     def initialize(actual, expected)
-      nmany = actual > expected ? "too many" : "too few"
+      nmany = actual > expected ? "too few" : "too many"
       super "#{nmany} arguments given (#{actual}, expected #{expected})"
     end
   end
