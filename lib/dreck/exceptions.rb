@@ -13,8 +13,9 @@ module Dreck
     # @param greedy [Boolean] whether or not a list that absorbs the tail is present
     def initialize(actual, expected, greedy = false)
       nmany = actual > expected ? "too few" : "too many"
-      exp = greedy ? ">#{actual}" : expected
-      super "#{nmany} arguments given (#{actual}, expected #{exp})"
+      act = greedy ? expected : actual
+      exp = greedy ? ">=#{actual}" : expected
+      super "#{nmany} arguments given (#{act}, expected #{exp})"
     end
   end
 
