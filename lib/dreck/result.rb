@@ -68,10 +68,12 @@ module Dreck
     # @raise [AbsoptionError] if absorption fails and {strict?} is not true
     # @api private
     def check_absorption!
-      count = count_expected
+      count, greedy = count_expected
 
-      return if count.nil?
-      raise AbsorptionError.new(count, @args.size) if count != @args.size && strict?
+      return if greedy && @args.size >= count
+      return unless strict?
+
+      raise AbsorptionError.new(count, @args.size, greedy) if count != @args.size
     end
 
     # Count the number of arguments expected to be supplied.
@@ -79,17 +81,19 @@ module Dreck
     #  of indeterminate size is specified
     # @api private
     def count_expected
-      @expected.inject(0) do |n, exp|
+      count = @expected.inject(0) do |n, exp|
         case exp.first
         when :list
           # if the list is greedy, all arguments have to be absorbed
-          break unless exp[3]
+          return [n, true] unless exp[3]
 
           n + exp[3]
         else
           n + 1
         end
       end
+
+      [count, false]
     end
 
     # Parse a one or more expected arguments of a given type and add them to
