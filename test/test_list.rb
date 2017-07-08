@@ -3,8 +3,17 @@
 require "minitest/autorun"
 require "dreck"
 
+# Tests for list results.
 class DreckListTest < Minitest::Test
-  # Tests for list results.
+  def test_list_bad_count
+    # requesting a non-positive sized list throws a bad count error
+    assert_raises Dreck::BadCountError do
+      Dreck.parse [] do
+        list :string, :stuff, count: -1
+      end
+    end
+  end
+
   def test_list_absorb_empty
     # parsing an empty list into a greedy list throws a greedy absorption error
     assert_raises Dreck::GreedyAbsorptionError do
