@@ -5,6 +5,11 @@ module Dreck
   class DreckError < RuntimeError
   end
 
+  # Raised during list specification if a non-positive number of arguments
+  # are requested.
+  class BadCountError < DreckError
+  end
+
   # Raised during argument absorption if arguments are either left over
   # or are insufficient to populate the expected results.
   class AbsorptionError < DreckError

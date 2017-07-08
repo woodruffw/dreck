@@ -43,6 +43,10 @@ module Dreck
     # @param sym [Symbol] the name of the argument in {results}
     # @param count [Integer] the number of arguments in the list
     def list(type, sym, count: nil)
+      if count
+        raise BadCountError unless count.positive?
+      end
+
       @expected << [:list, type, sym, count]
     end
 
