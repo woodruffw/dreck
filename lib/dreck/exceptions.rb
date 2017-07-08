@@ -10,12 +10,19 @@ module Dreck
   class AbsorptionError < DreckError
     # @param actual [Integer] the actual number of arguments given
     # @param expected [Integer] the expected number of arguments
-    # @param greedy [Boolean] whether or not a list that absorbs the tail is present
-    def initialize(actual, expected, greedy = false)
-      nmany = actual > expected ? "too few" : "too many"
-      act = greedy && actual > expected ? expected : actual
-      exp = greedy ? ">=#{actual}" : expected
-      super "#{nmany} arguments given (#{act}, expected #{exp})"
+    def initialize(actual, expected)
+      nmany = actual < expected ? "too few" : "too many"
+      super "#{nmany} arguments given (#{actual}, expected #{expected})"
+    end
+  end
+
+  # Raised during argument absorption if a greedy list was expected but all arguments
+  # have already been absorbed.
+  class GreedyAbsorptionError < DreckError
+    # @param actual [Integer] the actual number of arguments given
+    # @param expected [Integer] the expected number of arguments
+    def initialize(actual, expected)
+      super "too few arguments given (>#{actual}, expected >#{expected})"
     end
   end
 

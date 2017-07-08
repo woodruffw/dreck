@@ -6,17 +6,21 @@ require "dreck"
 class DreckListTest < Minitest::Test
   # Tests for list results.
   def test_list_absorb_empty
-    # parsing an empty list into a list results in an empty list
-    r = Dreck.parse [] do
-      list :string, :stuff
+    # parsing an empty list into a greedy list throws a greedy absorption error
+    assert_raises Dreck::GreedyAbsorptionError do
+      Dreck.parse [] do
+        list :string, :stuff
+      end
     end
 
-    # parsing returns a result
-    assert_instance_of Dreck::Result, r
-
-    # the result is an empty array
-    assert_instance_of Array, r[:stuff]
-    assert_predicate r[:stuff], :empty?
+    assert_raises Dreck::GreedyAbsorptionError do
+      Dreck.parse [1, 2, 3] do
+        int :x
+        int :y
+        int :z
+        list :int, :foo
+      end
+    end
   end
 
   def test_list_absorb_all

@@ -70,10 +70,10 @@ module Dreck
     def check_absorption!
       count, greedy = count_expected
 
-      return if greedy && @args.size >= count
       return unless strict?
 
-      raise AbsorptionError.new(count, @args.size, greedy) if count != @args.size
+      raise GreedyAbsorptionError.new(count, @args.size) if count >= @args.size && greedy
+      raise AbsorptionError.new(count, @args.size) if count != @args.size && !greedy
     end
 
     # Count the number of arguments expected to be supplied.
