@@ -5,7 +5,7 @@ require_relative "dreck/result"
 # The primary namespace for {Dreck}.
 module Dreck
   # {Dreck}'s current version.
-  VERSION = "0.0.7"
+  VERSION = "0.1.0"
 
   # Parse the given arguments and produce a result.
   # @param args [Array<String>] the arguments to parse
