@@ -22,7 +22,7 @@ module Dreck
     # @param actual [Integer] the actual number of arguments given
     # @param expected [Integer] the expected number of arguments
     def initialize(actual, expected)
-      super "too few arguments given (>#{actual}, expected >#{expected})"
+      super "too few arguments given (#{actual}, expected >#{expected})"
     end
   end
 
