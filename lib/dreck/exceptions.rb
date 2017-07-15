@@ -13,21 +13,21 @@ module Dreck
   # Raised during argument absorption if arguments are either left over
   # or are insufficient to populate the expected results.
   class AbsorptionError < DreckError
-    # @param actual [Integer] the actual number of arguments given
-    # @param expected [Integer] the expected number of arguments
-    def initialize(actual, expected)
-      nmany = actual < expected ? "too few" : "too many"
-      super "#{nmany} arguments given (#{actual}, expected #{expected})"
+    # @param specified [Integer] the number of arguments specified
+    # @param supplied [Integer] the number of arguments supplied
+    def initialize(specified, supplied)
+      nmany = specified < supplied ? "too many" : "too few"
+      super "#{nmany} arguments given (#{supplied}, expected #{specified})"
     end
   end
 
   # Raised during argument absorption if a greedy list was expected but all arguments
   # have already been absorbed.
   class GreedyAbsorptionError < DreckError
-    # @param actual [Integer] the actual number of arguments given
-    # @param expected [Integer] the expected number of arguments
-    def initialize(actual, expected)
-      super "too few arguments given (#{actual}, expected >#{expected})"
+    # @param specified [Integer] the number of arguments specified
+    # @param supplied [Integer] the number of arguments supplied
+    def initialize(specified, supplied)
+      super "too few arguments given (#{specified}, expected >#{supplied})"
     end
   end
 
