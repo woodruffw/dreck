@@ -1,6 +1,7 @@
 dreck
 =====
 
+[![Build Status](https://img.shields.io/github/workflow/status/woodruffw/dreck/CI/master)](https://github.com/woodruffw/dreck/actions?query=workflow%3ACI)
 [![Gem Version](https://badge.fury.io/rb/dreck.svg)](https://badge.fury.io/rb/dreck)
 
 A stupid parser for trailing arguments.

@@ -27,6 +27,7 @@ module Dreck
       # @raise [ParserError] if the string is not a valid path on disk
       def parse_path(path)
         raise ParserError, "#{path}: no such path" unless File.exist?(path)
+
         path
       end
 
@@ -35,6 +36,7 @@ module Dreck
       # @raise [ParserError] if the string is not a valid regular file on disk
       def parse_file(file)
         raise ParserError, "#{file}: no such file" unless File.file?(file)
+
         file
       end
 
@@ -43,6 +45,7 @@ module Dreck
       # @raise [ParserError] if the string is not a valid directory on disk
       def parse_directory(dir)
         raise ParserError, "#{dir}: no such directory" unless File.directory?(dir)
+
         dir
       end
 
